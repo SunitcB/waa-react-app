@@ -22,21 +22,33 @@ export default function CreatePost(props) {
     }
 
     return (
-        <form ref={newPostForm}>
-            <label>
-                Title
-            </label>
-            <input type="text" name={'title'}></input>
-            <label>
-                Author
-            </label>
-            <input type="text" name={'author'}></input>
-            <label>
-                Content
-            </label>
-            <textarea name={'content'}></textarea>
-            <button type="button" onClick={createNewPost}>Create</button>
-            <button type="button" onClick={() => props.hideForm(false)}> Cancel</button>
+        
+        <form ref={newPostForm} class="card-view">
+            <h2>Add New Post</h2>
+            <div class="webform2">
+                <div>
+                    <label>
+                        Title
+                    </label>
+                    <input type="text" name={'title'}></input>
+                </div>
+                <div>
+                    <label>
+                        Author
+                    </label>
+                    <input type="text" name={'author'}></input>
+                </div>
+                <div>
+                    <label>
+                        Content
+                    </label>
+                    <textarea name={'content'}></textarea>
+                </div>
+                <div>
+                    <button class="btn-submit btn-purple" type="button" onClick={createNewPost}>Create</button>
+                    <button class="btn-submit btn-red" type="button" onClick={() => props.hideForm(false)}> Cancel</button>
+                </div>
+            </div>
         </form>
     );
 }

@@ -3,6 +3,8 @@ import { useCallback, useEffect, useState } from "react";
 import ProductDetails from "../components/ProductDetails";
 import { deleteData, getData, postData } from "../service/TransportService";
 import CreatePost from "../components/CreatePost";
+import { ChosenPostContext } from "../context/ChosenPostContext";
+import "./Dashboard.css"
 
 export function Dashboard() {
 
@@ -48,12 +50,27 @@ export function Dashboard() {
         setDetailsModel(postList.find(x => x.id === id));
     };
 
-    return <div>
-        <Posts postList={postList} postClickHandler={postClickHandler} />
-        <input type="text" value={changedTitle} onChange={changeTitleText}></input>
-        <button onClick={updatePostTitle}>Update</button>
-        <button onClick={() => setShowCreate(true)}>Create a post</button>
-        {showDetails ? <ProductDetails model={detailsModel} deleteHandler={deletePost} /> : null}
-        {showCreate ? <CreatePost hideForm={setShowCreate} createHandler={setLoadAfterCreate}/> : null}
-    </div>
+    return (
+        <div>
+            <div class="card-view">
+                <h2>All Posts</h2>
+                <Posts postList={postList} postClickHandler={postClickHandler} />
+            </div>
+
+            <div class="card-view webform1">
+                <h3>Update First POst Title</h3>
+                <div><input type="text" value={changedTitle} onChange={changeTitleText}></input>
+                </div>
+                <br />
+                <button class="btn-submit" onClick={updatePostTitle}>Update</button>
+                <button class="btn-submit btn-purple" onClick={() => setShowCreate(true)}>Create a post</button>
+            </div>
+
+            <ChosenPostContext.Provider value={detailsModel}>
+                {showDetails && <ProductDetails deleteHandler={deletePost} />}
+            </ChosenPostContext.Provider>
+
+            {showCreate ? <CreatePost hideForm={setShowCreate} createHandler={setLoadAfterCreate} /> : null}
+        </div>
+    );
 }

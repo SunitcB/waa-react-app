@@ -1,0 +1,145 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+
+table {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.table-header {
+    background-color: cadetblue;
+    font-weight: bold;
+    color: white;
+}
+
+.table-body {
+    padding: 5%;
+    text-align: center;
+}
+
+.table-body td,
+.table-header td {
+    padding: 2%;
+    border-bottom: 1px solid gray;
+}
+
+.card-view {
+    background: beige;
+    position: relative;
+    margin: 1% 2% 1% 2%;
+    ;
+    padding: 3% 4%;
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px lightgray;
+}
+
+.two-items-layout {
+    display: inline-flex;
+}
+
+.webform1 input,
+.webform1 select,
+.webform1 textarea {
+    width: 25%;
+    height: 2rem;
+    padding: 5px 15px;
+    font-size: medium;
+    line-height: 1.5;
+    border: 1px solid gray;
+    border-radius: 0.25rem;
+}
+
+.webform2 {
+    width: 25%;
+}
+
+.webform2 input,
+.webform2 select,
+.webform2 textarea {
+    width: 100%;
+    height: 2rem;
+    padding: 5px 15px;
+    font-size: medium;
+    line-height: 1.5;
+    border: 1px solid gray;
+    border-radius: 0.25rem;
+}
+
+.webform1 .btn-submit {
+    padding: 10px 10px !important;
+    border: 1px solid lightgray;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    height: auto !important;
+    width: 10% !important;
+}
+
+.floating{
+    float: right;
+}
+
+.webform2 .btn-submit {
+    padding: 10px 10px !important;
+    border: 1px solid lightgray;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    height: auto !important;
+}
+
+.btn-purple {
+    background-color: darkorchid !important;
+}
+
+.btn-red{
+    background-color: #ca260a !important;
+}
+
+.moods {
+    width: 15%;
+    height: 15%;
+    padding: 5% 15%;
+    margin: 3%;
+}
+
+.happy:hover,
+.sad:hover {
+    width: 14%;
+    height: 14%;
+}
+
+.two-items {
+    padding: 5%;
+    margin: 3%;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    width: 250px;
+    height: 200px;
+}
+
+ul{
+    background-color: lightgray;
+    border-radius: 15px;
+}
+
+li {
+    padding: 1%;
+}
+
+.button {
+    background-color: darkolivegreen;
+    color: white;
+    padding: .5%;
+    border-radius: 5px;
+    border: 1px solid darkgray;
+    box-shadow: 2px 2px 2px gray;
+    margin-left: 1%;
+}
+
+.button a {
+    text-decoration: none;
+}
