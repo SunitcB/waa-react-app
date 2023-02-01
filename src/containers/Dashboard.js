@@ -1,16 +1,37 @@
 import { Posts } from "../components/Posts";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ProductDetails from "../components/ProductDetails";
+import { deleteData, getData, postData } from "../service/TransportService";
+import CreatePost from "../components/CreatePost";
 
 export function Dashboard() {
 
-    let [postList, setPostList] = useState([
-        { id: 1, author: "Sunit", content: "This is supposed to be a content", title: "Some title" },
-        { id: 2, author: "Sunit", content: "This is supposed to be a content", title: "Some title" },
-        { id: 3, author: "Sunit", content: "This is supposed to be a content", title: "Some title" }
-    ]);
-
+    const [postList, setPostList] = useState([]);
+    const [loadAfterDelete, setLoadAfterDelete] = useState(false);
+    const [loadAfterCreate, setLoadAfterCreate] = useState(false);
     const [changedTitle, setChangedTitle] = useState("");
+    const [showDetails, setShowDetails] = useState(false);
+    const [detailsModel, setDetailsModel] = useState({});
+    const [showCreate, setShowCreate] = useState(false);
+
+    let deletePost = (id) => {
+        deleteData("/api/post", id).then(response => {
+            alert(response.data.message);
+            setLoadAfterDelete(!loadAfterDelete);
+        }).catch(error => {
+            alert(error);
+        });
+    }
+
+    useEffect(() => {
+        console.log("REFRESH THE DATA")
+        getData("/api/posts").then(response => {
+            setPostList(response.data.data)
+        }).catch(error => {
+            alert(error);
+        })
+    }, [loadAfterDelete, loadAfterCreate]);
+
 
     let changeTitleText = (evt) => {
         setChangedTitle(evt.target.value);
@@ -18,29 +39,21 @@ export function Dashboard() {
 
     let updatePostTitle = () => {
         let updatedPostList = [...postList]
-        console.log(changedTitle);
         updatedPostList[0].title = changedTitle
-        console.log(updatedPostList)
         setPostList(updatedPostList);
     };
 
-    const [showDetails, setShowDetails] = useState(false);
-    const [detailsModel, setDetailsModel] = useState({});
-
     let postClickHandler = (id) => {
-        console.log("ASAS");
-        console.log(id);
         setShowDetails(true);
-        setDetailsModel(postList.find(x => x.id == id));
+        setDetailsModel(postList.find(x => x.id === id));
     };
 
-    
-
     return <div>
-        {postList[0].title}
         <Posts postList={postList} postClickHandler={postClickHandler} />
         <input type="text" value={changedTitle} onChange={changeTitleText}></input>
         <button onClick={updatePostTitle}>Update</button>
-        {showDetails ? <ProductDetails model={detailsModel} /> : null}
+        <button onClick={() => setShowCreate(true)}>Create a post</button>
+        {showDetails ? <ProductDetails model={detailsModel} deleteHandler={deletePost} /> : null}
+        {showCreate ? <CreatePost hideForm={setShowCreate} createHandler={setLoadAfterCreate}/> : null}
     </div>
 }

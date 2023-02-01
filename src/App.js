@@ -1,8 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
 import { Dashboard } from './containers/Dashboard';
 
 function App() {
+
+  console.log("Environment Variable");
+  console.log(process.env.REACT_APP_HOST_URL)
+
   return (
     // <div className="App">
     //   <header className="App-header">
