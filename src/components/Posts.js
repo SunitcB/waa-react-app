@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Post } from "./Post";
 
 
@@ -7,7 +8,9 @@ export function Posts(props) {
     for (let postObj of props.postList) {
         postContent.push(
             <div class="two-items-layout">
-                <Post key={postObj.id} sth={postObj} clickHandler={props.postClickHandler}></Post>
+                <Link to={`${postObj.id}`}>
+                    <Post key={postObj.id} sth={postObj}></Post>
+                </Link>
             </div>
         );
     }
