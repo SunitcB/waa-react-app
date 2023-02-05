@@ -1,5 +1,8 @@
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import { Dashboard } from './containers/Dashboard';
+import NavHeader from './containers/NavHeader';
+import PageRouter from './containers/PageRouter';
 
 function App() {
 
@@ -23,7 +26,14 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <Dashboard/>
+    <div>
+      <BrowserRouter>
+        <NavHeader />
+        <PageRouter />
+      </BrowserRouter>
+
+    </div>
+
   );
 }
 

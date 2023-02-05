@@ -2,15 +2,15 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { ChosenPostContext } from "../context/ChosenPostContext";
 import { getData } from "../service/TransportService";
 
-export default function Comment() {
-    let chosenPostObj = useContext(ChosenPostContext);
-    let postId = chosenPostObj.id;
+export default function Comment(props) {
+
+    let postId = props.postId;
     const [commentList, setCommentList] = useState([]);
     let getComments = (postId) => {
         console.log("RENDERING COMMENTS");
 
         getData("/api/post/" + postId + "/comments").then(response => {
-            setCommentList(response.data.data.map(x => <li key={x.id}>{x.name}</li>));
+            setCommentList(response.data.data);
         }).catch(error => {
             alert(error);
         })
@@ -22,7 +22,7 @@ export default function Comment() {
         <div>
             <h3>Comments on Post</h3>
             <ul>
-                {commentList}
+                {commentList.map(x => <li key={x.id}>{x.name}</li>)}
             </ul>
         </div>
     );

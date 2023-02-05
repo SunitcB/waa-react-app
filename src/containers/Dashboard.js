@@ -5,6 +5,8 @@ import { deleteData, getData, postData } from "../service/TransportService";
 import CreatePost from "../components/CreatePost";
 import { ChosenPostContext } from "../context/ChosenPostContext";
 import "./Dashboard.css"
+import NavHeader from "./NavHeader";
+import PageRouter from "./PageRouter";
 
 export function Dashboard() {
 
@@ -16,7 +18,7 @@ export function Dashboard() {
     const [detailsModel, setDetailsModel] = useState({});
     const [showCreate, setShowCreate] = useState(false);
 
-    let deletePost = (id) => {
+    let deleteHandler = (id) => {
         deleteData("/api/post", id).then(response => {
             alert(response.data.message);
             setLoadAfterDelete(!loadAfterDelete);
@@ -51,6 +53,7 @@ export function Dashboard() {
     };
 
     return (
+        
         <div>
             <div class="card-view">
                 <h2>All Posts</h2>
@@ -66,11 +69,11 @@ export function Dashboard() {
                 <button class="btn-submit btn-purple" onClick={() => setShowCreate(true)}>Create a post</button>
             </div>
 
-            <ChosenPostContext.Provider value={detailsModel}>
+            {/* <ChosenPostContext.Provider value={detailsModel}>
                 {showDetails && <ProductDetails deleteHandler={deletePost} />}
-            </ChosenPostContext.Provider>
+            </ChosenPostContext.Provider> */}
 
-            {showCreate ? <CreatePost hideForm={setShowCreate} createHandler={setLoadAfterCreate} /> : null}
+            {/* {showCreate ? <CreatePost hideForm={setShowCreate} createHandler={setLoadAfterCreate} /> : null} */}
         </div>
     );
 }
